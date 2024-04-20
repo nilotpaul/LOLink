@@ -1,1 +1,3 @@
 2024-04-20 15:46:05,195 - ERROR - discord_bot - DISCORD_STICKER_BOT_TOKEN not set
+2024-04-20 21:08:56,815 - ERROR - discord_bot - Error sending sticker: seek of closed file
+2024-04-20 21:09:38,974 - ERROR - discord_bot - Error sending sticker: seek of closed file
