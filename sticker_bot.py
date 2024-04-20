@@ -1,11 +1,4 @@
-import discord
-from discord.ext import commands
-from discord import app_commands
-from PIL import Image
-from utils.env import get_env
-import os
-from discord.errors import DiscordException
-from logs.logger import logger
+from libs import *
 
 intents = discord.Intents.default()
 intents.guilds = True
@@ -17,7 +10,9 @@ bot = commands.Bot(command_prefix='/', intents=intents) # client bot initializat
 @bot.command() # help commands
 async def lolhelp(ctx):
     embed = discord.Embed(title="Bot Commands", description="List of available commands:", color=0x00ff00)
-    embed.add_field(name="/sticker:{name}", value="Send a sticker", inline=False)
+    embed.add_field(name="/sticker:{putin}", value="Send a funny putin sticker", inline=False)
+    embed.add_field(name="/sticker:{ff}", value="Send a fucked up emoji sticker", inline=False)
+    embed.add_field(name="/sticker:{meme}", value="Send a funny meme sticker", inline=False)
     embed.add_field(name="/lolhelp", value="Show all commands", inline=False)
     await ctx.send(embed=embed)    
 
@@ -30,17 +25,34 @@ async def on_ready(): # on successfull connection
 
 @bot.tree.command(name='sticker', description='Send a sticker') # sticker command autocomplete
 @app_commands.describe(sticker='Sticker name')
-async def sticker_putin(interaction: discord.Interaction, sticker: str):
+async def sticker_putin(interaction: discord.Interaction, sticker: str):    
     try:
-        with open(f'putin/{sticker}.png', 'rb') as f:
-          img = Image.open(f)
-          img = img.resize((128, 128), Image.BICUBIC) # resizing and saving temp img locally
+        if sticker == 'putin':
+            random_value = random.randint(1, 30)
+            sticker_path = f'putin/{random_value}.png'
 
-          img.save('test.png', 'PNG')
-    
-        await interaction.response.send_message(file=discord.File('test.png')) # uploading
+        elif sticker == 'ff':
+            random_value = random.randint(1,30)
+            sticker_path = f'ff/{random_value}.png'
 
-        os.remove('test.png') # removing the temp img
+        elif sticker == 'meme':
+            random_value = random.randint(1,30)
+            sticker_path = f'meme/sticker_{random_value}.png'    
+
+        else:
+            sticker_path = f'Logo.png'
+
+        if not os.path.exists(sticker_path):
+            raise FileNotFoundError("Sticker not found")
+
+        with open(sticker_path, 'rb') as f:
+            img = Image.open(f)
+            img = img.resize((128, 128), Image.BICUBIC) # resizing and saving temp img locally
+            img.save('temp.png', 'PNG')
+
+        await interaction.response.send_message(file=discord.File('temp.png')) # uploading
+
+        os.remove('temp.png') # removing the temp img
     
     except DiscordException as e:
         logger.error(e)
@@ -53,6 +65,7 @@ async def sticker_putin(interaction: discord.Interaction, sticker: str):
     except Exception as e:
         logger.error(e)
         await interaction.response.send_message('Something went wrong')
+
 
 
 

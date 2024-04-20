@@ -4,3 +4,13 @@
 2024-04-20 22:18:40,096 - ERROR - discord_bot - [Errno 2] No such file or directory: 'putin/stickerilrhgr.png'
 2024-04-20 22:19:25,709 - ERROR - discord_bot - [Errno 2] No such file or directory: 'putin/stickerilrhgr.png'
 2024-04-20 22:34:23,797 - ERROR - discord_bot - [Errno 2] No such file or directory: 'putin/stickerilrhgr.png'
+2024-04-20 23:22:09,341 - ERROR - discord_bot - [Errno 2] No such file or directory: 'putin/cum.png'
+2024-04-20 23:23:08,059 - ERROR - discord_bot - 404 Not Found (error code: 10062): Unknown interaction
+2024-04-20 23:27:14,533 - ERROR - discord_bot - name 'ctx' is not defined
+2024-04-20 23:31:59,237 - ERROR - discord_bot - Sticker not found
+2024-04-20 23:33:28,674 - ERROR - discord_bot - name 'ctx' is not defined
+2024-04-20 23:35:00,233 - ERROR - discord_bot - 404 Not Found (error code: 10062): Unknown interaction
+2024-04-20 23:44:02,453 - ERROR - discord_bot - Sticker not found
+2024-04-20 23:44:49,284 - ERROR - discord_bot - Sticker not found
+2024-04-20 23:48:29,409 - ERROR - discord_bot - Sticker not found
+2024-04-21 00:02:41,466 - ERROR - discord_bot - Sticker not found
