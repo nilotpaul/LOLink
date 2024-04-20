@@ -1,19 +1,25 @@
-from utils.env import get_env
 import discord
+from discord.ext import commands
 import os
 
-client = discord.Client()
+intents = discord.Intents.default()
+intents.guilds = True
+intents.messages = True
 
-@client.event
+bot = commands.Bot(command_prefix='!', intents=intents)
+
+@bot.command()
+async def send_sticker(ctx):
+    sticker_path = 'stickers/putin.png'
+    with open(sticker_path, 'rb') as f:
+        sticker = discord.File(f)
+    await ctx.send(file=sticker)
+
+@bot.event
 async def on_ready():
-    print('Logged in as {0.user}'.format(client))
+    print(f'{bot.user.name} has connected to Discord!')
+    print(f'Bot ID: {bot.user.id}')
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
 
-    if message.content.startswith('!send_sticker'):
-        await message.channel.send(file=discord.File("stickers\sticker_3.png"))
+bot.run(os.getenv('DISCORD_TOKEN'))
 
-client.run(os.getenv('DISCORD_TOKEN'))
