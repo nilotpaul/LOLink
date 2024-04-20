@@ -1,3 +1,3 @@
-from logs.logger import logger
+from utils.env import get_env
 
-logger.fatal('error')
+print(get_env('DISCORD_STICKER_BOT_TOKEN'))
