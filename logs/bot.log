@@ -1,3 +1,6 @@
 2024-04-20 15:46:05,195 - ERROR - discord_bot - DISCORD_STICKER_BOT_TOKEN not set
 2024-04-20 21:08:56,815 - ERROR - discord_bot - Error sending sticker: seek of closed file
 2024-04-20 21:09:38,974 - ERROR - discord_bot - Error sending sticker: seek of closed file
+2024-04-20 22:18:40,096 - ERROR - discord_bot - [Errno 2] No such file or directory: 'putin/stickerilrhgr.png'
+2024-04-20 22:19:25,709 - ERROR - discord_bot - [Errno 2] No such file or directory: 'putin/stickerilrhgr.png'
+2024-04-20 22:34:23,797 - ERROR - discord_bot - [Errno 2] No such file or directory: 'putin/stickerilrhgr.png'

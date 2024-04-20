@@ -4,7 +4,8 @@ from discord import app_commands
 from PIL import Image
 from utils.env import get_env
 import os
-import io
+from discord.errors import DiscordException
+from logs.logger import logger
 
 intents = discord.Intents.default()
 intents.guilds = True
@@ -30,16 +31,29 @@ async def on_ready(): # on successfull connection
 @bot.tree.command(name='sticker', description='Send a sticker') # sticker command autocomplete
 @app_commands.describe(sticker='Sticker name')
 async def sticker_putin(interaction: discord.Interaction, sticker: str):
-    with open(f'putin/{sticker}.png', 'rb') as f:
-        img = Image.open(f)
-        img = img.resize((128, 128), Image.BICUBIC) # resizing and saving temp img locally
+    try:
+        with open(f'putin/{sticker}.png', 'rb') as f:
+          img = Image.open(f)
+          img = img.resize((128, 128), Image.BICUBIC) # resizing and saving temp img locally
 
-        img.save('temp.png', 'PNG')
-
+          img.save('test.png', 'PNG')
     
-    await interaction.response.send_message(file=discord.File('temp.png')) # uploading
+        await interaction.response.send_message(file=discord.File('test.png')) # uploading
 
-    os.remove('temp.png') # removing the temp img
+        os.remove('test.png') # removing the temp img
+    
+    except DiscordException as e:
+        logger.error(e)
+        await interaction.response.send_message('Something went wrong')
+
+    except FileNotFoundError as e:
+        logger.error(e)
+        await interaction.response.send_message('No sticker')        
+
+    except Exception as e:
+        logger.error(e)
+        await interaction.response.send_message('Something went wrong')
+
 
 
 bot.run(get_env('DISCORD_TOKEN'))
