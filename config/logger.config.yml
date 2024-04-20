@@ -1,0 +1,12 @@
+logger:
+  name: "discord_bot"
+  level: "INFO"
+  format: "%(asctime)s - %(levelname)s - %(name)s - %(message)s"
+  handlers:
+    file_handler:
+      filename: "logs/bot.log"
+      level: "INFO"
+      format: "%(asctime)s - %(levelname)s - %(name)s - %(message)s"
+    console_handler:
+      level: "INFO"
+      format: "%(asctime)s - %(levelname)s - %(name)s - %(message)s"
